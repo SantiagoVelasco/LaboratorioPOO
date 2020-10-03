@@ -1,0 +1,14 @@
+﻿<Window x:Class="LaboratorioPOO_SantiagoVelasco.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LaboratorioPOO_SantiagoVelasco"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Name="btnAction" Content="Action" HorizontalAlignment="Left" Height="47" Margin="159,170,0,0" VerticalAlignment="Top" Width="85" Click="btnAction_Click"/>
+        <TextBox Name="txtResult" HorizontalAlignment="Left" Height="294" Margin="528,58,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="221"/>
+        <Button x:Name="btnDealer" Content="Dealer cards" HorizontalAlignment="Left" Height="47" Margin="159,260,0,0" VerticalAlignment="Top" Width="85" Click="btnDealer_Click"/>
+    </Grid>
+</Window>
