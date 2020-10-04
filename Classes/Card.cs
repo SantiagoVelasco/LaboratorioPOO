@@ -26,7 +26,7 @@ namespace LaboratorioPOO_SantiagoVelasco.Classes
             {
                 if (symbol == "A")
                 {
-                    value += 1;
+                    value += 11;
                 }
                 else
                 {

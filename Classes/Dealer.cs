@@ -56,5 +56,14 @@ namespace LaboratorioPOO_SantiagoVelasco.Classes
             AddCard(Deal());
             AddCard(Deal());
         }
+
+        public void Confirm(List<Card> deck)
+        {
+            if(deck.Count == 0)
+            {
+                Generate();
+                Randomize();
+            }
+        }
     }
 }

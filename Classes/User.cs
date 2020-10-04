@@ -19,5 +19,15 @@ namespace LaboratorioPOO_SantiagoVelasco.Classes
         {
             Hand.Add(c);
         }
+
+        public int Check(List<Card> cartas)
+        {
+            int points = 0;
+            foreach(Card c in cartas)
+            {
+                points += c.Score;
+            }
+            return points;
+        }
     }
 }

@@ -7,13 +7,16 @@
         mc:Ignorable="d"
         Title="Game" Height="450" Width="800">
     <Grid>
-        <Button Name="btnShuffle" Content="Shuffle" HorizontalAlignment="Center" Height="34" Margin="0,273,0,0" VerticalAlignment="Top" Width="76" Click="btnShuffle_Click"/>
-        <Button Name="btnCard" Content="Card" HorizontalAlignment="Center" Visibility="Hidden" Height="34" Margin="0,256,0,0" VerticalAlignment="Top" Width="76" Click="btnCard_Click"/>
+        <Button Name="btnShuffle" Content="Start" HorizontalAlignment="Center" Height="34" Margin="0,273,0,0" VerticalAlignment="Top" Width="76" Click="btnShuffle_Click"/>
+        <Button Name="btnCard" Content="Card" HorizontalAlignment="Center" Visibility="Hidden" Height="34" Margin="0,273,0,0" VerticalAlignment="Top" Width="76" Click="btnCard_Click"/>
         <TextBox Name="txtResultsPlayer" HorizontalAlignment="Left" Height="165" Margin="195,52,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
-        <TextBox Name="txtResultsDealer" HorizontalAlignment="Left" Height="165" Margin="441,52,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
-        <Button Name="btnSave" Content="Save" Visibility="Visible" HorizontalAlignment="Center" Height="34" Margin="0,332,0,0" VerticalAlignment="Top" Width="76" Click="btnSave_Click"/>
+        <TextBox Name="txtResultsDealer" HorizontalAlignment="Left" Height="165" Margin="446,52,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" HorizontalContentAlignment="Left"/>
+        <Button Name="btnSave" Content="Save" Visibility="Hidden" HorizontalAlignment="Center" Height="34" Margin="0,332,0,0" VerticalAlignment="Top" Width="76" Click="btnSave_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="195,21,0,0" Text="Player Cards" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="441,21,0,0" Text="Dealer Cards" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="446,21,0,0" Text="Dealer Cards" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,52,0,0" Text="Your score" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Name="txtScore" HorizontalAlignment="Center" Height="40" Margin="0,68,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="82"/>
+        <Button Name="btnNewGame" Content="New game" Visibility="Hidden" HorizontalAlignment="Center" Height="34" Margin="0,273,0,0" VerticalAlignment="Top" Width="76" Click="btnNewGame_Click"/>
 
 
     </Grid>
