@@ -59,7 +59,7 @@ namespace LaboratorioPOO_SantiagoVelasco.Classes
 
         public void Confirm(List<Card> deck)
         {
-            if(deck.Count == 0)
+            if(deck.Count < 4)
             {
                 Generate();
                 Randomize();

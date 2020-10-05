@@ -21,6 +21,9 @@ namespace LaboratorioPOO_SantiagoVelasco
     {
         Dealer d = new Dealer();
         Player p = new Player();
+        int victories = 0;
+        int defeat = 0;
+        int tie = 0;
         public Game()
         {
             InitializeComponent();
@@ -39,13 +42,13 @@ namespace LaboratorioPOO_SantiagoVelasco
             p.Init(c1, c2);
             foreach (Card c in p.Hand)
             {
-                txtResultsPlayer.Text += c.Symbol + c.Suit + c.Score + " ";
+                txtResultsPlayer.Text += c.Symbol + c.Suit + "  ";
             }
             int pointsPlayer = p.Check(p.Hand);
             txtScore.Text = pointsPlayer.ToString();
             foreach (Card k in d.Hand)
             {
-                txtResultsDealer.Text += k.Symbol + k.Suit + k.Score + " ";
+                txtResultsDealer.Text += k.Symbol + k.Suit + "  ";
                 break;
             }
             int points = p.Check(p.Hand);
@@ -54,6 +57,11 @@ namespace LaboratorioPOO_SantiagoVelasco
                 if (p.Hand.Count() == 2)
                 {
                     MessageBox.Show("Blackjack" + "\n" + "You win");
+                    victories += 1;
+                    btnSave.Visibility = Visibility.Hidden;
+                    btnCard.Visibility = Visibility.Hidden;
+                    btnNewGame.Visibility = Visibility.Visible;
+                    btnFinish.Visibility = Visibility.Visible;
                 }
             }
         }
@@ -64,7 +72,7 @@ namespace LaboratorioPOO_SantiagoVelasco
             int points = p.Check(p.Hand);
             Card c = d.Deal();
             p.AddCard(c);
-            txtResultsPlayer.Text += c.Symbol + c.Suit + c.Score + "  ";
+            txtResultsPlayer.Text += c.Symbol + c.Suit + "  ";
             points += c.Score;
             if (points > 21)
             {
@@ -81,16 +89,18 @@ namespace LaboratorioPOO_SantiagoVelasco
             if (points > 21)
             {
                 btnCard.Visibility = Visibility.Hidden;
+                btnSave.Visibility = Visibility.Hidden;
                 btnNewGame.Visibility = Visibility.Visible;
+                btnFinish.Visibility = Visibility.Visible;
                 MessageBox.Show("You lose");
-                txtResultsPlayer.Text = "";
-                p.Hand.Clear();
-                d.Hand.Clear();
+                defeat += 1;
             }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            btnSave.Visibility = Visibility.Hidden;
+            btnCard.Visibility = Visibility.Hidden;
             int pointsPlayer = p.Check(p.Hand);
             int pointsDealer = d.Check(d.Hand);
             if(pointsDealer > pointsPlayer && pointsDealer > 16)
@@ -98,9 +108,10 @@ namespace LaboratorioPOO_SantiagoVelasco
                 txtResultsDealer.Text = "";
                 foreach (Card c in d.Hand)
                 {
-                    txtResultsDealer.Text += c.Symbol + c.Suit + c.Score + "  ";
+                    txtResultsDealer.Text += c.Symbol + c.Suit + "  ";
                 }
                 MessageBox.Show("Dealer win");
+                defeat += 1;
             }
             else
             {
@@ -116,7 +127,7 @@ namespace LaboratorioPOO_SantiagoVelasco
                     {
                         foreach (Card i in d.Hand)
                         {   
-                            txtResultsDealer.Text += i.Symbol + i.Suit + i.Score + "  ";
+                            txtResultsDealer.Text += i.Symbol + i.Suit + "  ";
                             if (i.Symbol == "A")
                             {
                                 i.Score = 1;
@@ -127,6 +138,7 @@ namespace LaboratorioPOO_SantiagoVelasco
                     if(pointsDealer > 21)
                     {
                         MessageBox.Show("You win");
+                        victories += 1;
                     }
                 }
                 while (pointsDealer < 17)
@@ -138,7 +150,7 @@ namespace LaboratorioPOO_SantiagoVelasco
                     pointsDealer += z.Score;
                     foreach (Card c in d.Hand)
                     {
-                        txtResultsDealer.Text += c.Symbol + c.Suit + c.Score + "  ";
+                        txtResultsDealer.Text += c.Symbol + c.Suit + "  ";
                         if (pointsDealer > 21)
                         {
                             foreach (Card i in d.Hand)
@@ -149,11 +161,12 @@ namespace LaboratorioPOO_SantiagoVelasco
                                 }
                             }
                         }
-                        pointsDealer = d.Check(d.Hand);
-                        if(pointsDealer > 21)
-                        {
-                            MessageBox.Show("You win");
-                        }
+                    }
+                    pointsDealer = d.Check(d.Hand);
+                    if(pointsDealer > 21)
+                    {
+                        MessageBox.Show("You win");
+                        victories += 1;
                     }
                 }
                 if(pointsDealer < 22)
@@ -161,19 +174,22 @@ namespace LaboratorioPOO_SantiagoVelasco
                     txtResultsDealer.Text = "";
                     foreach (Card c in d.Hand)
                     {
-                        txtResultsDealer.Text += c.Symbol + c.Suit + c.Score + "  ";
+                        txtResultsDealer.Text += c.Symbol + c.Suit + "  ";
                     }
                     if (pointsDealer == pointsPlayer)
                     {
                         MessageBox.Show("Tie");
+                        tie += 1;
                     }
                     else
                     {
-                        MessageBox.Show("You lose   " + pointsDealer + "   " + pointsPlayer);
+                        MessageBox.Show("You lose");
+                        defeat += 1;
                     }
                 }
             }
             btnNewGame.Visibility = Visibility.Visible;
+            btnFinish.Visibility = Visibility.Visible;
         }
 
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
@@ -189,14 +205,16 @@ namespace LaboratorioPOO_SantiagoVelasco
             int pointsPlayer = p.Check(p.Hand);
             txtScore.Text = pointsPlayer.ToString();
             btnNewGame.Visibility = Visibility.Hidden;
+            btnFinish.Visibility = Visibility.Hidden;
             btnCard.Visibility = Visibility.Visible;
+            btnSave.Visibility = Visibility.Visible;
             foreach (Card c in p.Hand)
             {
-                txtResultsPlayer.Text += c.Symbol + c.Suit + c.Score + "  ";
+                txtResultsPlayer.Text += c.Symbol + c.Suit + "  ";
             }
             foreach (Card k in d.Hand)
             {
-                txtResultsDealer.Text += k.Symbol + k.Suit + k.Score + " ";
+                txtResultsDealer.Text += k.Symbol + k.Suit + "  ";
                 break;
             }
             if (pointsPlayer == 21)
@@ -204,13 +222,24 @@ namespace LaboratorioPOO_SantiagoVelasco
                 if (p.Hand.Count() == 2)
                 {
                     MessageBox.Show("Blackjack" + "\n" + "You win");
-                    txtResultsPlayer.Text = "";
-                    txtResultsDealer.Text = "";
                     btnCard.Visibility = Visibility.Hidden;
                     btnSave.Visibility = Visibility.Hidden;
                     btnNewGame.Visibility = Visibility.Visible;
+                    btnFinish.Visibility = Visibility.Visible;
                 }
             }
+        }
+
+        private void btnFinish_Click(object sender, RoutedEventArgs e)
+        {
+            txtDealerCards.Text = "";
+            txtPlayerCards.Text = "";
+            txtResultsDealer.Visibility = Visibility.Hidden;
+            txtResultsPlayer.Visibility = Visibility.Hidden;
+            txtScore.TextAlignment = TextAlignment.Left;
+            txtScore.Text = "Victories: " + victories.ToString() + "\n" + "Defeats: " + defeat.ToString() +"\n" + "Ties: " + tie.ToString();
+            btnNewGame.Visibility = Visibility.Hidden;
+            btnFinish.Visibility = Visibility.Hidden;
         }
     }
 }
